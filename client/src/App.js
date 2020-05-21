@@ -4,6 +4,17 @@ import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 import axios from 'axios';
+import UpdateMovieForm from'./Movies/UpdateMovieForm'
+
+import styled from 'styled-components';
+
+const BodyContainer = styled.div`
+background: orange;
+
+`
+
+
+
 
 const App = () => {
   const [savedList, setSavedList] = useState([]);
@@ -25,7 +36,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <BodyContainer>
       <SavedList list={savedList} />
 
       <Route exact path="/">
@@ -35,7 +46,11 @@ const App = () => {
       <Route path="/movies/:id">
         <Movie addToSavedList={addToSavedList} />
       </Route>
-    </>
+
+      <Route path="/update-movie/:id"></Route>
+         <UpdateMovieForm movieList={movieList} setMovieList={setMovieList} />
+      <Route/>
+    </BodyContainer>
   );
 };
 
