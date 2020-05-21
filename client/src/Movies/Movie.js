@@ -39,10 +39,10 @@ function Movie({ addToSavedList }) {
   if (!movie) {
     return <div>Loading movie information...</div>;
   }
-  const deleteMovie = e => {
-    axios.delete(`http://localhost:5000/api/movies/${movie.id}`)
+  const deleteMovie = (id) => {
+    axios.delete(`http://localhost:5000/api/movies/${id}`)
     .then(res => {
-      console.log(res)
+      console.log(res, 'Do we have less Movies???!?!?!?!?!?!?')
       push('/')
     })
 
@@ -52,12 +52,12 @@ function Movie({ addToSavedList }) {
   return (
     <MovieContainer>
       <MovieCard movie={movie} />
-      <div className="save-button" onClick={saveMovie}>
-        Save
-      </div>
-          {/* <button onClick={() => push(`/update-movie/${params.id}`)}>Edit Movie</button> */}
+          <button style = {{background: 'blue', color:'white'}}
+              onClick={saveMovie}> Save </button>
+          <button style = {{background: 'green', color:'white'}}
+              onClick={() => push(`/update-movie/${params.id}`)}>Edit Movie</button>
           <button style = {{background: 'red', color:'white'}}
-          onClick={() => deleteMovie(params.id)}>Delete Movie</button>
+              onClick={() => deleteMovie(params.id)}>Delete Movie</button>
     </MovieContainer>
   );
 }
